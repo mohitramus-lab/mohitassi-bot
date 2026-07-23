@@ -40,6 +40,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "  `/chats` – View tagged chats\n"
         "  `/note <title> | <content>` – Save a note\n"
         "  `/notes` – View all notes\n\n"
+        "🎧 *AGENTS*\n"
+        "  `/addagent <name> | <id> | <specialty>`\n"
+        "  `/agents` – List support agents\n"
+        "  `/agenton <id>` / `/agentoff <id>` – Availability\n\n"
         "👑 *TEAM*\n"
         "  `/addteam <user_id>` – Add team member\n"
         "  `/team` – List team\n"
@@ -115,6 +119,8 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     total_contacts= conn.execute("SELECT COUNT(*) as c FROM contacts").fetchone()['c']
     total_sched   = conn.execute("SELECT COUNT(*) as c FROM schedules WHERE status='pending'").fetchone()['c']
     total_notes   = conn.execute("SELECT COUNT(*) as c FROM notes").fetchone()['c']
+    total_agents  = conn.execute("SELECT COUNT(*) as c FROM agents").fetchone()['c']
+    online_agents = conn.execute("SELECT COUNT(*) as c FROM agents WHERE available=1").fetchone()['c']
     conn.close()
 
     await update.message.reply_text(
@@ -122,6 +128,7 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"💰 Payments: `{total_pay}` total | `{pending_pay}` pending | `{confirmed_pay}` confirmed\n"
         f"🤖 Auto-replies: `{total_replies}`\n"
         f"👥 Contacts: `{total_contacts}`\n"
+        f"🎧 Agents: `{total_agents}` total | `{online_agents}` online\n"
         f"⏰ Pending Schedules: `{total_sched}`\n"
         f"📝 Notes: `{total_notes}`",
         parse_mode="Markdown"

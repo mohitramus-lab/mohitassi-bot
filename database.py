@@ -89,6 +89,16 @@ def init_db():
             added_by   INTEGER,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
+
+        CREATE TABLE IF NOT EXISTS agents (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            name        TEXT NOT NULL,
+            telegram_id INTEGER,
+            specialty   TEXT DEFAULT 'general',
+            available   INTEGER DEFAULT 1,
+            added_by    INTEGER,
+            created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
     """)
     conn.commit()
     conn.close()

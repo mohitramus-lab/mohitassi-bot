@@ -5,7 +5,7 @@ from telegram.ext import (
     filters, ContextTypes, CallbackQueryHandler
 )
 from config import BOT_TOKEN
-from handlers import payment, autoreply, contacts, scheduler, organizer, admin
+from handlers import payment, autoreply, contacts, scheduler, organizer, admin, agents
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -28,6 +28,14 @@ def main():
     app.add_handler(CommandHandler("removeteam",  admin.remove_team_member))
     app.add_handler(CommandHandler("team",        admin.list_team))
     app.add_handler(CommandHandler("stats",       admin.stats))
+
+    # ── AGENTS ───────────────────────────────────────────────────
+    app.add_handler(CommandHandler("addagent",    agents.add_agent))
+    app.add_handler(CommandHandler("delagent",    agents.remove_agent))
+    app.add_handler(CommandHandler("agent",       agents.get_agent))
+    app.add_handler(CommandHandler("agents",      agents.list_agents))
+    app.add_handler(CommandHandler("agenton",     agents.agent_online))
+    app.add_handler(CommandHandler("agentoff",    agents.agent_offline))
 
     # ── PAYMENT ──────────────────────────────────────────────────
     app.add_handler(CommandHandler("token",       payment.register_token))

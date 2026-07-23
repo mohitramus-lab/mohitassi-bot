@@ -113,6 +113,16 @@ docker run -d --restart always --name mybot mybot
 | `/pin Important Info \| Bank details here` | Pin a note |
 | `/delnote 4` | Delete note ID 4 |
 
+### 🎧 Support Agents
+| Command | Description |
+|---------|-------------|
+| `/addagent Sara \| 987654321 \| payments` | Register a support agent |
+| `/agents` | List all agents (online/offline) |
+| `/agent sara` | Search agent by name or specialty |
+| `/agenton 2` | Mark agent ID 2 available |
+| `/agentoff 2` | Mark agent ID 2 offline |
+| `/delagent 2` | Remove agent ID 2 |
+
 ### 👑 Team Management
 | Command | Description |
 |---------|-------------|
