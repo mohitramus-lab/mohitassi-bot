@@ -5,7 +5,7 @@ from telegram.ext import (
     filters, ContextTypes, CallbackQueryHandler
 )
 from config import BOT_TOKEN
-from handlers import payment, autoreply, contacts, scheduler, organizer, admin
+from handlers import payment, autoreply, contacts, scheduler, organizer, admin, content
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -64,6 +64,13 @@ def main():
     app.add_handler(CommandHandler("delnote",     organizer.delete_note))
     app.add_handler(CommandHandler("pin",         organizer.pin_important))
 
+    # ── CONTENT AGENT (viral finance ideas) ──────────────────────
+    app.add_handler(CommandHandler("ideas",       content.daily_ideas))
+    app.add_handler(CommandHandler("idea",        content.content_idea))
+    app.add_handler(CommandHandler("hook",        content.viral_hook))
+    app.add_handler(CommandHandler("calendar",    content.content_calendar))
+    app.add_handler(CommandHandler("contenthelp", content.content_help))
+
     # ── INLINE BUTTONS ────────────────────────────────────────────
     app.add_handler(CallbackQueryHandler(payment.handle_callback, pattern="^pay_"))
     app.add_handler(CallbackQueryHandler(organizer.handle_callback, pattern="^org_"))
@@ -76,6 +83,9 @@ def main():
 
     # ── SCHEDULER JOB ─────────────────────────────────────────────
     app.job_queue.run_repeating(scheduler.check_schedules, interval=60, first=10)
+
+    # ── DAILY CONTENT AGENT JOB ───────────────────────────────────
+    app.job_queue.run_daily(content.send_daily_ideas, time=content.daily_time())
 
     logger.info("✅ Bot is running...")
     app.run_polling(drop_pending_updates=True)
