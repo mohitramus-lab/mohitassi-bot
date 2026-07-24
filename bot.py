@@ -5,7 +5,7 @@ from telegram.ext import (
     filters, ContextTypes, CallbackQueryHandler
 )
 from config import BOT_TOKEN
-from handlers import payment, autoreply, contacts, scheduler, organizer, admin, content
+import payment, autoreply, contacts, scheduler, organizer, admin, content
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
