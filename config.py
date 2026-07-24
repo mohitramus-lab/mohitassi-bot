@@ -2,7 +2,7 @@
 #  config.py  –  Edit these values before running
 # ─────────────────────────────────────────────
 
-BOT_TOKEN   = "8511486071:AAE--tEKdZUvoeWK4ZyZ9cNnxa0HwLh1_9o"
+BOT_TOKEN   = "8907805190:AAHKsX_eDvmx9hxSHKd2CW_eyA4tz2nkJuw"
 OWNER_ID    = 7150352799
 
 # Team members who can use admin commands

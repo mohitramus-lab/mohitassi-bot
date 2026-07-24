@@ -113,6 +113,23 @@ docker run -d --restart always --name mybot mybot
 | `/pin Important Info \| Bank details here` | Pin a note |
 | `/delnote 4` | Delete note ID 4 |
 
+### 📈 Content Agent (Viral Finance Ideas)
+Your in-house marketing strategist for the stock-market / trading / "make money"
+niche. It studies what goes viral on Instagram, YouTube Shorts, TikTok and X and
+turns it into ready-to-shoot daily content ideas (hook + format + angle + CTA +
+hashtags). It also auto-DMs the owner a fresh batch every morning.
+
+| Command | Description |
+|---------|-------------|
+| `/ideas` | Today's curated batch of viral content ideas |
+| `/idea` | One fresh idea now (add a topic, e.g. `/idea options`) |
+| `/hook` | Scroll-stopping opening lines (add a topic) |
+| `/calendar` | A 7-day content plan |
+| `/contenthelp` | How the content agent works |
+
+> Auto-delivery time and posting-window tips live in `content.py`
+> (`DAILY_HOUR` / `DAILY_MIN`). Edit them to fit your audience.
+
 ### 👑 Team Management
 | Command | Description |
 |---------|-------------|
